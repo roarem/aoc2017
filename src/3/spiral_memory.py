@@ -1,5 +1,5 @@
 
-def find_square_number(number):
+def taxicab_geometry(number):
     square_number = 0
     corners = [0,0,0,1]
     while corners[-1] < number:
@@ -15,7 +15,7 @@ def find_square_number(number):
 
 
 for number in [1,12,23,1024,368078]:
-    square_number, corners, distance = \
-            find_square_number(number)
+    square_number, corners, distance = taxicab_geometry(number)
     print('Number: {}\nSquare number: {}\nCorners: {}\nDistance: {}\n'\
             .format(number,square_number, corners, distance))
+
