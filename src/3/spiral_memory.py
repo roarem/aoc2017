@@ -13,9 +13,31 @@ def taxicab_geometry(number):
     return square_number,corners, distance
 
 
+def stress_test(number):
+    '''
+    finding index of corners
+    '''
+    corners = [0,0,0,1]
+    fourth_corner = 1
+    for square in range(1,10):
+        #first_corner = square*2+fourth_corner
+        #second_corner = first_corner+square*2
+        #third_corner = second_corner+square*2
+        #fourth_corner = third_corner+square*2
+        #print(first_corner,second_corner,third_corner,fourth_corner)
+        #corners = [corners[-1],0,0,0]
+        #print(corners)
+        for i in range(len(corners)):
+            corners[i] = corners[i-1]+square*2
+        #corners = [corner+square*2 for corner in corners]
+        print(corners)
+        
 
-for number in [1,12,23,1024,368078]:
-    square_number, corners, distance = taxicab_geometry(number)
-    print('Number: {}\nSquare number: {}\nCorners: {}\nDistance: {}\n'\
-            .format(number,square_number, corners, distance))
+#for number in [1,12,23,1024,368078]:
+#    square_number, corners, distance = taxicab_geometry(number)
+#    print('Number: {}\nSquare number: {}\nCorners: {}\nDistance: {}\n'\
+#            .format(number,square_number, corners, distance))
+
+stress_test(4)
+
 
