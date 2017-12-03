@@ -20,16 +20,8 @@ def stress_test(number):
     corners = [0,0,0,1]
     fourth_corner = 1
     for square in range(1,10):
-        #first_corner = square*2+fourth_corner
-        #second_corner = first_corner+square*2
-        #third_corner = second_corner+square*2
-        #fourth_corner = third_corner+square*2
-        #print(first_corner,second_corner,third_corner,fourth_corner)
-        #corners = [corners[-1],0,0,0]
-        #print(corners)
         for i in range(len(corners)):
             corners[i] = corners[i-1]+square*2
-        #corners = [corner+square*2 for corner in corners]
         print(corners)
         
 
