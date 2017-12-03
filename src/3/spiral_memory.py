@@ -1,17 +1,21 @@
 
 def find_square_number(number):
-    spiral_end = 1
     square_number = 0
-    corners = [0,0,0,0]
-    while spiral_end < number:
-        print(spiral_end,square_number)
-        print(corners,'\n')
+    corners = [0,0,0,1]
+    while corners[-1] < number:
         square_number += 1
-        spiral_end += square_number*8
-        corners = [6*square_number,4*square_number,2*square_number,0]
-        corners[:] = [spiral_end-corner for corner in corners]
+        corners[-1] += square_number*8
+        corner_increase = [6*square_number,4*square_number,2*square_number,0]
+        corners[:] = [corners[-1]-corner for corner in corner_increase]
+     
+    distance = min([square_number+abs((corner-square_number)-number) \
+                    for corner in corners])
+    return square_number,corners, distance
 
-    return square_number,spiral_end,corners
 
-print(find_square_number())
 
+for number in [1,12,23,1024,368078]:
+    square_number, corners, distance = \
+            find_square_number(number)
+    print('Number: {}\nSquare number: {}\nCorners: {}\nDistance: {}\n'\
+            .format(number,square_number, corners, distance))
