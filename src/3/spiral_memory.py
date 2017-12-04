@@ -1,4 +1,3 @@
-
 def taxicab_geometry(number):
     square_number = 0
     corners = [0,0,0,1]
@@ -12,7 +11,6 @@ def taxicab_geometry(number):
                     for corner in corners])
     return square_number,corners, distance
 
-
 def print_out(sq,j,elements):
     print('sq: {}, j: {}'.format(sq,j))
     temp_string = ''
@@ -23,7 +21,6 @@ def print_out(sq,j,elements):
     next_element += elements[-1]
     print(temp_string+'{} = {}\n'.format(elements[-1],next_element))
     return next_element
-        
 
 def stress_test(number):
     os = [1,2,4,5,10,11,23,25]
