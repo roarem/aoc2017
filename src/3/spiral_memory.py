@@ -13,8 +13,8 @@ def taxicab_geometry(number):
     return square_number,corners, distance
 
 
-def print_out(sq,s,j,elements):
-    print('sq: {}, s: {}, j: {}'.format(sq,s,j))
+def print_out(sq,j,elements):
+    print('sq: {}, j: {}'.format(sq,j))
     temp_string = ''
     next_element = 0
     for el in elements[:-1]:
@@ -27,34 +27,46 @@ def print_out(sq,s,j,elements):
 
 def stress_test(number):
     os = [1,2,4,5,10,11,23,25]
-    corners = [2,5,11,25]
-    for sq in range(2,3):
-        ns = [print_out(sq,0,0,[os[-1],os[0]])]
-        for j in range(1,sq*2-2):
-            ns.append(print_out(sq,0,j,[ns[-1], os[j-2], os[j-1], os[j]]))
-        ns.append(print_out(sq,0,j+1,[ns[-1], os[j-1], os[j]]))
-        ns.append(print_out(sq,1,j+2,[ns[-1], os[j]]))
-        ns.append(print_out(sq,1,j+3,[ns[-1], ns[-2], os[j], os[j+1]]))
-        print('hoho')
-        for s in range(1,3):
-            for k in range(j,j+s*sq*2):
-                print('lala')
-                ns.append(print_out(sq,s,k,[ns[-1], os[k-2], os[k-1], os[k]]))
-            #next_element = ns[-1] + os[side*(j-1)] + os[side*(j)]
-            #print('{} + {} + {} = {}\n'.format(\
-            #                          ns[-1], os[side*(j-1)], os[side*(j)],\
-            #                          next_element))
-            #ns.append(next_element)
-            ns.append(print_out(sq,s,j,[ns[-1], os[j-1], os[j]]))
-            next_element = ns[-1] + os[side*(j)]
-            print('{} + {} = {}\n'.format(\
-                                      ns[-1], os[side*(j-1)], next_element))
-            ns.append(next_element)
-            print(ns)  
+    corner_indicies = [3,7,11]
+    b_corners = [i-1 for i in corner_indicies]
+    a_corners = [i+1 for i in corner_indicies]
+    for sq in range(2,5):
+        number_of_elements = sq*8
+        print(corner_indicies)
+        print(b_corners)
+        print(a_corners)
+        print('First')
+        ns = [print_out(sq,0,[os[-1],os[0]])]
+        for j in range(1,number_of_elements):
+            i = j//(sq*2)*2
+            if j in b_corners:
+                print('Before corner')
+                ns.append(print_out(sq,j,[ns[-1], os[j-i-2], os[j-i-1]]))
+            elif j in corner_indicies:
+                print('Corner')
+                ns.append(print_out(sq,j,[ns[-1], os[j-i-2]]))
+            elif j in a_corners:
+                print('After corner')
+                ns.append(print_out(sq,j,[ns[-1], ns[-2], os[j-i], os[j-i-1]]))
+            elif j+2==number_of_elements:
+                print('Before last corner')
+                ns.append(print_out(sq,j,[ns[-1],ns[0],os[-1],os[-2]]))
+            elif j+1==number_of_elements:
+                print('Last corner')
+                ns.append(print_out(sq,j,[ns[-1],ns[0],os[-1]]))
+            else:
+                print('Middle')
+                ns.append(print_out(sq,j,[ns[-1], os[j-i-2], os[j-i-1], os[j-i]]))
+            if ns[-1]>number:
+                print('Found it!')
+                print(ns[-1])
+                break
         os = ns
-        #for j in range(len(corners)):
-        #    corners[j] = corners[j-1]+square*2
-        #print(corners)
+        for j in range(len(corner_indicies)):
+            corner_indicies[j] = corner_indicies[j]+2*(j+1)
+        b_corners = [i-1 for i in corner_indicies]
+        a_corners = [i+1 for i in corner_indicies]
+        print(corner_indicies)
              
         
 
