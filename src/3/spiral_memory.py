@@ -29,31 +29,12 @@ def stress_test(number):
     os = [1,2,4,5,10,11,23,25]
     corners = [2,5,11,25]
     for sq in range(2,3):
-        #print('sq: {}'.format(sq))
-        #ns = [os[-1]+os[0]] 
         ns = [print_out(sq,1,0,[os[-1],os[0]])]
         for j in range(1,sq*2-2):
             ns.append(print_out(sq,1,j,[ns[-1], os[j-2], os[j-1], os[j]]))
-            #next_element = ns[-1] + os[j-2] + os[j-1] + os[j]
-            #print('Element: {}'.format(j))
-            #print('{} + {} + {} + {} = {}\n'.format(\
-            #               ns[-1], os[j-2], os[j-1], os[j], next_element))
-            #ns.append(next_element)
-        #next_element = ns[-1] + os[j-1] + os[j]
-        #print('{} + {} + {} = {}\n'.format(\
-        #                          ns[-1], os[j-1], os[j], next_element))
-        #ns.append(next_element)
         ns.append(print_out(sq,1,j+1,[ns[-1], os[j-1], os[j]]))
-        #next_element = ns[-1] + os[j]
-        #print('{} + {} = {}\n'.format(\
-        #                          ns[-1], os[j], next_element))
-        #ns.append(next_element)
-        ns.append(print_out(sq,1,j+1,[ns[-1], os[j]]))
-        #next_element = ns[-1] + ns[-2] + os[j] + os[j+1]
-        #print('{} + {} + {} + {} = {}\n'.format(\
-        #                          ns[-1], ns[-2], os[j], os[j+1], next_element))
-        #ns.append(next_element)
-        ns.append(print_out(sq,1,j+1,[ns[-1], ns[-2], os[j], os[j+1]]))
+        ns.append(print_out(sq,1,j+2,[ns[-1], os[j]]))
+        ns.append(print_out(sq,1,j+3,[ns[-1], ns[-2], os[j], os[j+1]]))
         for s in range(2,4):
             #print('Side: {}'.format(side))
             for j in range(1,sq*2-1):
